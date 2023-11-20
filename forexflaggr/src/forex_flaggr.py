@@ -37,6 +37,7 @@ class ForexFlaggr:
     
     
     def fetch_data(self, stock="USDZAR=X", sample_interval='1h', n_days=500):
+        self.title  = stock
         start_date  = dt.datetime.today() - dt.timedelta(n_days) 
         end_date    = dt.datetime.today()
         self.data   = yf.download(stock, start_date, end_date, interval=sample_interval)
@@ -58,10 +59,10 @@ class ForexFlaggr:
         wma = ForexFlaggr.weighted_moving_average(self.data.Close, MA_periods)
 
         fig = go.Figure()
-        fig.add_trace(go.Line(x=self.data.index, y=self.data.Close, name=title))
+        fig.add_trace(go.Line(x=self.data.index, y=self.data.Close, name=self.title))
         fig.add_trace(go.Line(x=self.data.index, y=ma,              name='Moving avg.'))
         fig.add_trace(go.Line(x=self.data.index, y=wma,             name='Weighted ma.'))
-        fig.update_layout(template='none', title=title)
+        fig.update_layout(template='none', title=self.title)
         self.join_df(ma, wma)
         self.fig = fig
         

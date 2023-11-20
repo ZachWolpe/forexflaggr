@@ -29,7 +29,8 @@ setup(
         "pygam>=0.8.0",
         "moepy>=1.1.4",
         "setuptools>=65.6.3",
-        "kaleido>=0.2.1"
+        "kaleido>=0.2.1",
+        "nbformat"
         ],
     extras_require={
         "dev": ["pytest>=7.0", "twine>=4.0.2"],
