@@ -23,13 +23,13 @@ setup(
         "Operating System :: OS Independent",
     ],
     install_requires=[
-        "plotly-express==0.4.1",
-        "plotly==5.10.0",
-        "yfinance==0.2.3",
-        "pygam==0.8.0",
-        "moepy==1.1.4",
-        "setuptools==65.6.3",
-        "kaleido==0.2.1"
+        "plotly-express>=0.4.1",
+        "plotly>=5.10.0",
+        "yfinance>=0.2.3",
+        "pygam>=0.8.0",
+        "moepy>=1.1.4",
+        "setuptools>=65.6.3",
+        "kaleido>=0.2.1"
         ],
     extras_require={
         "dev": ["pytest>=7.0", "twine>=4.0.2"],
