@@ -21,6 +21,18 @@ class ForexFlaggr:
         self.data = None
 
     @staticmethod
+    def get_price(ff):
+        """
+        Return the most recent price data.
+
+        Returns:
+            datetime, timezone, close, open, high, low
+        """
+        x = ff.df_all.iloc[-1, :]
+        return str(x.name), str(x.name.tz), x['Close'], x['Open'], x['High'], x['Low']
+
+
+    @staticmethod
     def moving_average(signal, period=20):
         return signal.rolling(window=period).mean()
     
@@ -37,6 +49,7 @@ class ForexFlaggr:
     
     
     def fetch_data(self, stock="USDZAR=X", sample_interval='1h', n_days=500):
+        self.title  = stock
         start_date  = dt.datetime.today() - dt.timedelta(n_days) 
         end_date    = dt.datetime.today()
         self.data   = yf.download(stock, start_date, end_date, interval=sample_interval)
@@ -49,20 +62,43 @@ class ForexFlaggr:
         self.ma.name    = 'ma'
         self.df_all     = self.data.join(ma).join(wma)
     
-    def plot_signal(self, MA_periods=None, title='USD/ZAR'):
+    def plot_signal(self, MA_periods=None):
         if self.data is None:
             return self
 
-        if MA_periods is None: MA_periods = 24*14 # two weeks
+        if MA_periods is None:
+            MA_periods = 12*15 # three weeks (exclude weekends)
         ma  = ForexFlaggr.moving_average(self.data.Close, MA_periods)
         wma = ForexFlaggr.weighted_moving_average(self.data.Close, MA_periods)
 
         fig = go.Figure()
-        fig.add_trace(go.Line(x=self.data.index, y=self.data.Close, name=title))
+        fig.add_trace(go.Line(x=self.data.index, y=self.data.Close, name=self.title))
         fig.add_trace(go.Line(x=self.data.index, y=ma,              name='Moving avg.'))
         fig.add_trace(go.Line(x=self.data.index, y=wma,             name='Weighted ma.'))
-        fig.update_layout(template='none', title=title)
+        fig.update_layout(template='none', title=self.title)
         self.join_df(ma, wma)
         self.fig = fig
         
         return self
+    
+    @staticmethod
+    def consol_log():
+        msg =   """
+    ______________________________________________________________________________________________________________________________________________
+    ______________________________________________________________________________________________________________________________________________
+
+            /$$          /$$$$$$$$                                            /$$$$$$$$ /$$                                        
+          /$$$$$$       | $$_____/                                           | $$_____/| $$                                        
+         /$$__  $$      | $$     /$$$$$$   /$$$$$$   /$$$$$$  /$$   /$$      | $$      | $$  /$$$$$$   /$$$$$$   /$$$$$$   /$$$$$$ 
+        | $$  \__/      | $$$$$ /$$__  $$ /$$__  $$ /$$__  $$|  $$ /$$/      | $$$$$   | $$ |____  $$ /$$__  $$ /$$__  $$ /$$__  $$
+        |  $$$$$$       | $$__/| $$  \ $$| $$  \__/| $$$$$$$$ \  $$$$/       | $$__/   | $$  /$$$$$$$| $$  \ $$| $$  \ $$| $$  \__/
+         \____  $$      | $$   | $$  | $$| $$      | $$_____/   $$  $$       | $$      | $$ /$$__  $$| $$  | $$| $$  | $$| $$      
+         /$$  \ $$      | $$   |  $$$$$$/| $$      |  $$$$$$$ /$$/\  $$      | $$      | $$|  $$$$$$$|  $$$$$$$|  $$$$$$$| $$      
+        |  $$$$$$/      |__/    \______/ |__/       \_______/|__/  \__/      |__/      |__/ \_______/ \____  $$ \____  $$|__/      
+         \_  $$_/                                                                                     /$$  \ $$ /$$  \ $$          
+           \__/                                                                                      |  $$$$$$/|  $$$$$$/          
+                                                                                                      \______/  \______/                   
+    ______________________________________________________________________________________________________________________________________________
+    ______________________________________________________________________________________________________________________________________________                                                 
+    """
+        return msg

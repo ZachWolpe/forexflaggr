@@ -40,7 +40,7 @@ class GAM_Model(Stochastic_Model_Interface):
     def fit(self, X=None, y=None):
         X,y         = self.check_Xy(X,y)
         self.model  = LinearGAM(n_splines=self.n_splines).gridsearch(X, y)
-        self.XX      = self.model.generate_X_grid(term=0, n=GAM_Model.n_samples)
+        self.XX     = self.model.generate_X_grid(term=0, n=GAM_Model.n_samples)
         return self
     
     @Stochastic_Model_Interface.internal_tracing
@@ -76,6 +76,7 @@ class GAM_Model(Stochastic_Model_Interface):
             .transform()\
             .extrapolate(n_steps=n_steps)\
             .plot_prediction()
+        return self
 
     @Stochastic_Model_Interface.internal_tracing
     def plot_prediction(self, c1='orange', c2='darkblue', c3='lightblue', *args, **kwargs):
@@ -95,7 +96,7 @@ class GAM_Model(Stochastic_Model_Interface):
             fig.add_trace(go.Scatter(x=self.Xforward, y=self.CIf_upper, name='GAM', line=dict(color='black', dash='dash'), showlegend=False))
         except Exception:
             pass
-        fig.show()
-        return
+        self.fig = fig
+        return self
    
 

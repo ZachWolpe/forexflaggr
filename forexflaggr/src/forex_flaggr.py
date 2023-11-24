@@ -21,6 +21,18 @@ class ForexFlaggr:
         self.data = None
 
     @staticmethod
+    def get_price(ff):
+        """
+        Return the most recent price data.
+
+        Returns:
+            datetime, timezone, close, open, high, low
+        """
+        x = ff.df_all.iloc[-1, :]
+        return str(x.name), str(x.name.tz), x['Close'], x['Open'], x['High'], x['Low']
+
+
+    @staticmethod
     def moving_average(signal, period=20):
         return signal.rolling(window=period).mean()
     
@@ -50,11 +62,12 @@ class ForexFlaggr:
         self.ma.name    = 'ma'
         self.df_all     = self.data.join(ma).join(wma)
     
-    def plot_signal(self, MA_periods=None, title='USD/ZAR'):
+    def plot_signal(self, MA_periods=None):
         if self.data is None:
             return self
 
-        if MA_periods is None: MA_periods = 24*14 # two weeks
+        if MA_periods is None:
+            MA_periods = 12*15 # three weeks (exclude weekends)
         ma  = ForexFlaggr.moving_average(self.data.Close, MA_periods)
         wma = ForexFlaggr.weighted_moving_average(self.data.Close, MA_periods)
 
@@ -67,3 +80,25 @@ class ForexFlaggr:
         self.fig = fig
         
         return self
+    
+    @staticmethod
+    def consol_log():
+        msg =   """
+    ______________________________________________________________________________________________________________________________________________
+    ______________________________________________________________________________________________________________________________________________
+
+            /$$          /$$$$$$$$                                            /$$$$$$$$ /$$                                        
+          /$$$$$$       | $$_____/                                           | $$_____/| $$                                        
+         /$$__  $$      | $$     /$$$$$$   /$$$$$$   /$$$$$$  /$$   /$$      | $$      | $$  /$$$$$$   /$$$$$$   /$$$$$$   /$$$$$$ 
+        | $$  \__/      | $$$$$ /$$__  $$ /$$__  $$ /$$__  $$|  $$ /$$/      | $$$$$   | $$ |____  $$ /$$__  $$ /$$__  $$ /$$__  $$
+        |  $$$$$$       | $$__/| $$  \ $$| $$  \__/| $$$$$$$$ \  $$$$/       | $$__/   | $$  /$$$$$$$| $$  \ $$| $$  \ $$| $$  \__/
+         \____  $$      | $$   | $$  | $$| $$      | $$_____/   $$  $$       | $$      | $$ /$$__  $$| $$  | $$| $$  | $$| $$      
+         /$$  \ $$      | $$   |  $$$$$$/| $$      |  $$$$$$$ /$$/\  $$      | $$      | $$|  $$$$$$$|  $$$$$$$|  $$$$$$$| $$      
+        |  $$$$$$/      |__/    \______/ |__/       \_______/|__/  \__/      |__/      |__/ \_______/ \____  $$ \____  $$|__/      
+         \_  $$_/                                                                                     /$$  \ $$ /$$  \ $$          
+           \__/                                                                                      |  $$$$$$/|  $$$$$$/          
+                                                                                                      \______/  \______/                   
+    ______________________________________________________________________________________________________________________________________________
+    ______________________________________________________________________________________________________________________________________________                                                 
+    """
+        return msg

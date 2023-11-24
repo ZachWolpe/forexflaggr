@@ -5,6 +5,7 @@ pygam>=0.8.0
 moepy>=1.1.4
 setuptools>=65.6.3
 kaleido>=0.2.1
+nbformat
 
 [dev]
 pytest>=7.0

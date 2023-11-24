@@ -1,9 +1,9 @@
-from setuptools import find_packages, setup
+from setuptools import (setup) # find_packages
 
 with open("./README.md", "r") as f:
     long_description = f.read()
 
-VERSION         = "0.0.1"
+VERSION         = "0.0.2"
 AUTHOR          = "Zach Wolpe"
 AUTHOR_EMAIL    = "zach.wolpe@mlxgo.com"
 

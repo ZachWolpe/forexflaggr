@@ -45,9 +45,12 @@ class pie_chart_recommendation:
 
 
     @staticmethod
-    def plot_pie_recommendation(df_all, fig, n_samples=None, *args, **kwargs):
+    def plot_pie_recommendation(df_all, fig=None, n_samples=None, *args, **kwargs):
         if n_samples is None:
             n_samples = pie_chart_recommendation.n_samples
+
+        if fig is None:
+            fig = go.Figure()
         perc, _     = pie_chart_recommendation.compute_pie_perc(df_all, n_samples)
         perc        = round(perc, 2)
         _rec        = pie_chart_recommendation.buy_recommendation(perc)
