@@ -7,7 +7,6 @@ A minimal package to pull and analyze financial (forex) data.
 
 ## Installation
 
-
 Install the latest version of forexflaggr with pip:
 
 ```bash
@@ -33,7 +32,8 @@ Import the package:
 ```python
 import forexflaggr as fxr
 ```
-Some key functions:
+
+key functions:
 
 - `fxr.ForexFlaggr().fetch_data()`  : fetches data from _yahoo finance_.`
 - `fxr.ForexFlaggr().plot_data()`   : plots data`
