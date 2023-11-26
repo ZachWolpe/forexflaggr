@@ -1,15 +1,20 @@
 from .src.dependencies import (make_subplots, go, px, LinearGAM, lowess, dt, yf, np, warnings)
-from .src.forex_flaggr import ForexFlaggr
-from .src.gam_model import GAM_Model
-from .src.loess_model import LOESS_Model
 from .src.pie_chart_recommendation import pie_chart_recommendation
+from .src.html_config import Build_HTML_Config
+from .src.forex_flaggr import ForexFlaggr
+from .src.loess_model import LOESS_Model
+from .src.gam_model import GAM_Model
 
+import yaml
 
-__version__ = '0.0.1'
-__author__  = 'Zach Wolpe'
-__credits__ = 'MLXGO'
-__email__   = 'zach.wolpe@mlxgo.com'
+# get version from build spec
+with open("../build_spec.yml", "r") as f:
+    build_spec = yaml.load(f, Loader=yaml.FullLoader)
 
+__version__         = build_spec['__version__']
+__author__          = build_spec['__author__']
+__email__           = build_spec['__email__']
+__credits__         = build_spec['__credits__']
 
 
 

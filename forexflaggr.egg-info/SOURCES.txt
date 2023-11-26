@@ -1,6 +1,5 @@
 LICENSE
 README.md
-pyproject.toml
 setup.py
 forexflaggr/__init__.py
 forexflaggr.egg-info/PKG-INFO
@@ -11,6 +10,7 @@ forexflaggr.egg-info/top_level.txt
 forexflaggr/src/dependencies.py
 forexflaggr/src/forex_flaggr.py
 forexflaggr/src/gam_model.py
+forexflaggr/src/html_config.py
 forexflaggr/src/loess_model.py
 forexflaggr/src/pie_chart_recommendation.py
 forexflaggr/src/stochastic_model_interface.py

@@ -1,11 +1,20 @@
 from setuptools import (setup) # find_packages
+import yaml
 
 with open("./README.md", "r") as f:
     long_description = f.read()
 
-VERSION         = "0.0.2"
-AUTHOR          = "Zach Wolpe"
-AUTHOR_EMAIL    = "zach.wolpe@mlxgo.com"
+
+# get version from build spec
+with open("./build_spec.yml", "r") as f:
+    build_spec = yaml.load(f, Loader=yaml.FullLoader)
+
+build_spec
+VERSION         = build_spec['__version__']
+AUTHOR          = build_spec['__author__']
+AUTHOR_EMAIL    = build_spec['__email__']
+CREDITS         = build_spec['__credits__']
+
 
 setup(
     name="forexflaggr",

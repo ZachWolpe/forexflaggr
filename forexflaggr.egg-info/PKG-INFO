@@ -1,33 +1,81 @@
 Metadata-Version: 2.1
 Name: forexflaggr
-Version: 0.0.1
-Summary: A minimal package to pull and analyize financial data/
+Version: 0.0.4
+Summary: A minimal package to pull and analyse financial (exchange rate) data.
 Home-page: https://github.com/ZachWolpe/forexflaggr
 Author: Zach Wolpe
-Author-email: Zach Wolpe <zach.wolpe@mlxgo.com>
+Author-email: zach.wolpe@mlxgo.com
 License: MIT
-Project-URL: Homepage, https://github.com/zachwolpe/forexflaggr/issues
-Project-URL: Issues, https://github.com/zachwolpe/forexflaggr/issues
-Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.10
 Classifier: Operating System :: OS Independent
 Requires-Python: >=3.8
 Description-Content-Type: text/markdown
-Provides-Extra: dev
 License-File: LICENSE
+Requires-Dist: plotly-express>=0.4.1
+Requires-Dist: plotly>=5.10.0
+Requires-Dist: yfinance>=0.2.3
+Requires-Dist: pygam>=0.8.0
+Requires-Dist: moepy>=1.1.4
+Requires-Dist: setuptools>=65.6.3
+Requires-Dist: kaleido>=0.2.1
+Requires-Dist: nbformat
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"
+Requires-Dist: twine>=4.0.2; extra == "dev"
 
 # forexflaggr
 
 A minimal package to pull and analyze financial (forex) data.
 
-## Getting started
+# Getting started
 
-Install `ForexFlaggr` from pip:
 
-```$ pip install forexflaggr```
+## Installation
 
-or alternatively, on GitHub:
 
-```$ pip install git+<url>```
+Install the latest version of forexflaggr with pip:
 
-## Usage
+```bash
+pip install forexflaggr
+```
+
+or directly from the source code:
+
+```bash
+pip install git+https://github.com/ZachWolpe/forexflaggr.git
+```
+
+If the API fails to return data unexpectedly, it may be due to the _yahoo finance_ cache. Empty the cache with:
+
+```bash
+pip install yfinance --upgrade --no-cache-dir 
+```
+
+# Usage
+
+Import the package:
+    
+```python
+import forexflaggr as fxr
+```
+Some key functions:
+
+- `fxr.ForexFlaggr().fetch_data()`  : fetches data from _yahoo finance_.`
+- `fxr.ForexFlaggr().plot_data()`   : plots data`
+- `fxr.ForexFlaggr.get_price(ff)`   : returns the price of a given currency pair`.
+- `fxr.pie_chart_recommendation.plot_pie_recommendation()` : plot a recommendation pie chart.
+- `fxr.LOESS_Model(X, y)`           : returns a LOESS model.
+- `fxr.GAM_Model(X, y)`             : returns a GAM model.
+
+
+See a complete example usage in `./examples/forexflaggr_runtime.ipynb`
+
+# Off-the-shelf
+
+For an off-the-shelf `USD/ZAR` analysis solution in the form of an `html` doc, run:
+    
+```python
+import forexflaggr as fxr
+fxr.build_html()
+```
