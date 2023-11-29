@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: forexflaggr
-Version: 0.0.4
+Version: 0.0.5
 Summary: A minimal package to pull and analyse financial (exchange rate) data.
 Home-page: https://github.com/ZachWolpe/forexflaggr
 Author: Zach Wolpe
@@ -11,18 +11,8 @@ Classifier: Programming Language :: Python :: 3.10
 Classifier: Operating System :: OS Independent
 Requires-Python: >=3.8
 Description-Content-Type: text/markdown
-License-File: LICENSE
-Requires-Dist: plotly-express>=0.4.1
-Requires-Dist: plotly>=5.10.0
-Requires-Dist: yfinance>=0.2.3
-Requires-Dist: pygam>=0.8.0
-Requires-Dist: moepy>=1.1.4
-Requires-Dist: setuptools>=65.6.3
-Requires-Dist: kaleido>=0.2.1
-Requires-Dist: nbformat
 Provides-Extra: dev
-Requires-Dist: pytest>=7.0; extra == "dev"
-Requires-Dist: twine>=4.0.2; extra == "dev"
+License-File: LICENSE
 
 # forexflaggr
 
@@ -32,7 +22,6 @@ A minimal package to pull and analyze financial (forex) data.
 
 
 ## Installation
-
 
 Install the latest version of forexflaggr with pip:
 
@@ -59,7 +48,8 @@ Import the package:
 ```python
 import forexflaggr as fxr
 ```
-Some key functions:
+
+key functions:
 
 - `fxr.ForexFlaggr().fetch_data()`  : fetches data from _yahoo finance_.`
 - `fxr.ForexFlaggr().plot_data()`   : plots data`

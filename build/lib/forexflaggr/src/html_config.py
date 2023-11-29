@@ -193,7 +193,6 @@ class Build_HTML_Config:
         logging.info('LOESS model saved to html.')
         return self
 
-
     def fit_gam_model(self):
         """Fit GAM model."""
         # GAMs + LOESS
@@ -209,7 +208,6 @@ class Build_HTML_Config:
 
         logging.info('GAM model saved to html.')
         return self
-
 
     def build_multidimensional_model(self):
         """Build multidimensional model."""
@@ -321,7 +319,6 @@ class Build_HTML_Config:
 
         logging.info('3D hyperplane scatter plot saved to html.')
         return self
-
 
 
     def build_html_document(self):

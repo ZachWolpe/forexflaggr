@@ -7,14 +7,19 @@ from .src.gam_model import GAM_Model
 
 import yaml
 
-# get version from build spec
-with open("../build_spec.yml", "r") as f:
-    build_spec = yaml.load(f, Loader=yaml.FullLoader)
+# get version from build spec: how to read for package?
+# with open("../build_spec.yml", "r") as f:
+#     build_spec = yaml.load(f, Loader=yaml.FullLoader)
 
-__version__         = build_spec['__version__']
-__author__          = build_spec['__author__']
-__email__           = build_spec['__email__']
-__credits__         = build_spec['__credits__']
+# __version__         = build_spec['__version__']
+# __author__          = build_spec['__author__']
+# __email__           = build_spec['__email__']
+# __credits__         = build_spec['__credits__']
+
+__version__  = "0.0.5"
+__author__   = 'Zach Wolpe'
+__credits__  = 'MLXGO'
+__email__    = 'zach.wolpe@mlxgo.com'
 
 
 
