@@ -16,7 +16,7 @@ import yaml
 # __email__           = build_spec['__email__']
 # __credits__         = build_spec['__credits__']
 
-__version__  = "0.0.5"
+__version__  = "0.0.6"
 __author__   = 'Zach Wolpe'
 __credits__  = 'MLXGO'
 __email__    = 'zach.wolpe@mlxgo.com'

@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: forexflaggr
-Version: 0.0.5
+Version: 0.0.6
 Summary: A minimal package to pull and analyse financial (exchange rate) data.
 Home-page: https://github.com/ZachWolpe/forexflaggr
 Author: Zach Wolpe

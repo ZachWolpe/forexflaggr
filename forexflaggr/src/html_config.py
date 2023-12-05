@@ -357,7 +357,7 @@ class Build_HTML_Config:
             <embed type="text/html" src=".{_OUTPUT_PATH}/3d_hyperplane_scatter.html"         width="{FIGURE_WIDTH}"     height="500">
             <embed type="text/html" src=".{_OUTPUT_PATH}/3d_scatter_prediction.html"         width="{FIGURE_WIDTH}"     height="500">
             <embed type="text/html" src=".{_OUTPUT_PATH}/3d_scatter.html"                    width="{FIGURE_WIDTH}"     height="500">
-            <embed type="text/html" src=".{_OUTPUT_PATH}//pie_chart_recommendation.html"      width="{FIGURE_WIDTH}"    height="500">
+            <embed type="text/html" src=".{_OUTPUT_PATH}/pie_chart_recommendation.html"      width="{FIGURE_WIDTH}"    height="500">
             <embed type="text/html" src=".{_OUTPUT_PATH}/loess.html"                         width="{FIGURE_WIDTH}"     height="500">
             <embed type="text/html" src=".{_OUTPUT_PATH}/sp500.html"                         width="{FIGURE_WIDTH}"     height="500">
             <embed type="text/html" src=".{_OUTPUT_PATH}/usdzar.html"                        width="{FIGURE_WIDTH}"     height="500">
